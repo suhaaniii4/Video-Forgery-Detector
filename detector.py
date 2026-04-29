@@ -4,6 +4,8 @@ import numpy as np
 class VideoForgeryDetector:
     def __init__(self, video_path):
         self.cap = cv2.VideoCapture(video_path)
+        if not self.cap.isOpened():
+            raise Exception("Error opening video file")
         self.total_frames = int(self.cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
     def extract_frames(self, sampling_rate=2):
@@ -38,6 +40,7 @@ class VideoForgeryDetector:
         return suspicious
 
 
+
 def simple_detection(video_path):
     detector = VideoForgeryDetector(video_path)
     frames = detector.extract_frames()
@@ -51,3 +54,4 @@ def simple_detection(video_path):
     }
 
     return detector, results
+

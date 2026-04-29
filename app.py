@@ -23,7 +23,10 @@ def upload():
         path = os.path.join(UPLOAD_FOLDER, file.filename)
         file.save(path)
 
-        detector, results = simple_detection(path)
+        try:
+           detector, results = simple_detection(path)
+        except Exception as e:
+           return f"Error: {str(e)}"
 
         suspicious = results["combined_suspicious"]
         total = results["total_frames_analyzed"]
@@ -153,4 +156,4 @@ def upload():
     return "No file uploaded"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
