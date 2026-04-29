@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+
+<div class="navbar">
+    <h2>📊 Analysis Result</h2>
+</div>
+
+<div class="container">
+
+   
+    <div class="result-box">
+        <h2 style="color: {{ color }}">{{ result }}</h2>
+        <p><b>Accuracy:</b> {{ accuracy }}%</p>
+        <p><b>Forgery Type:</b> {{ ftype }}</p>
+    </div>
+
+   
+    <div class="result-box">
+        <h3>📈 Performance Metrics</h3>
+        <p><b>Precision:</b> {{ precision }}%</p>
+        <p><b>Recall:</b> {{ recall }}%</p>
+        <p><b>F1 Score:</b> {{ f1 }}%</p>
+        <p><b>AUC Score:</b> {{ auc }}%</p>
+    </div>
+
+   
+    <div class="frames-card">
+        <h3>⚠️ Tampered Frames</h3>
+
+        {% if has_tampering %}
+            <div class="frame-container">
+                {% for f in frames %}
+                    <span class="frame">Frame {{ f }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-tamper">No tampering detected</p>
+        {% endif %}
+    </div>
+
+   
+    <div class="graphs">
+
+        <div class="graph-card">
+            <h3>Similarity Graph</h3>
+            <img src="{{ url_for('static', filename='graph.png') }}">
+        </div>
+
+        <div class="graph-card">
+            <h3>Confusion Matrix</h3>
+            <img src="{{ url_for('static', filename='confusion_matrix.png') }}">
+        </div>
+
+    </div>
+
+    
+    <div class="graphs">
+
+        <div class="graph-card">
+            <h3>ROC Curve</h3>
+            <img src="{{ url_for('static', filename='roc.png') }}">
+        </div>
+
+        <div class="graph-card">
+            <h3>Precision-Recall Curve</h3>
+            <img src="{{ url_for('static', filename='pr_curve.png') }}">
+        </div>
+
+    </div>
+
+    
+    <a href="/" class="back-btn">⬅ Try Another Video</a>
+
+</div>
+
+</body>
+</html>

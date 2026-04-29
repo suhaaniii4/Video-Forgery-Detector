@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Forgery Detection usign Tampering Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+
+<div class="navbar">
+    <h2>Video Forgery Detector</h2>
+</div>
+
+<div class="container">
+
+    
+    <h1 class="main-title">Detect Fake Videos Instantly</h1>
+    <p class="subtitle">AI-powered video forgery detection system</p>
+
+    
+    <div class="upload-box">
+        <form action="/upload" method="post" enctype="multipart/form-data" onsubmit="showLoader()">
+
+           
+            <div class="drop-area" onclick="document.getElementById('fileInput').click()">
+                <p>📁 Drag & Drop Video or Click to Upload</p>
+                <input type="file" id="fileInput" name="file" hidden required>
+            </div>
+
+            <br>
+            <button type="submit">Analyze Video</button>
+        </form>
+
+        
+        <div id="progress-bar"></div>
+
+        
+        <div id="loader" class="loader"></div>
+        <p id="loading-text">Analyzing video...</p>
+    </div>
+
+    
+    <div class="features">
+
+        <div class="card">
+            <img src="https://cdn-icons-png.flaticon.com/512/1042/1042330.png">
+            <h3>Forgery Detection</h3>
+            <p>Detect clone, splice & inpaint attacks</p>
+        </div>
+
+        <div class="card">
+            <img src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png">
+            <h3>Frame Analysis</h3>
+            <p>Deep frame similarity tracking</p>
+        </div>
+
+        <div class="card">
+            <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png">
+            <h3>High Accuracy</h3>
+            <p>AI-based precise predictions</p>
+        </div>
+
+    </div>
+
+    
+    <div class="info">
+        <h2>How It Works</h2>
+        <p>1. Upload Video → 2. Frame Analysis → 3. Detect Tampering → 4. View Results</p>
+    </div>
+
+    
+    <div class="footer">
+        <p>© 2026 Video Forgery Detection System</p>
+    </div>
+
+</div>
+
+
+<script>
+function showLoader() {
+    document.getElementById("loader").style.display = "block";
+    document.getElementById("loading-text").style.display = "block";
+
+    let bar = document.getElementById("progress-bar");
+    let width = 0;
+
+    let interval = setInterval(() => {
+        if (width >= 100) clearInterval(interval);
+        else {
+            width += 10;
+            bar.style.width = width + "%";
+        }
+    }, 200);
+}
+</script>
+
+</body>
+</html>
